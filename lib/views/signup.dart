@@ -28,15 +28,30 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordTextEditingController =
       new TextEditingController();
 
-  signMeUp() {
-    if (formKey.currentState.validate()) {
+  bool usernameNotEmpty = false;
+
+  usernameValidation(username) async {
+    await databaseMethods.usernameEmpty(username);
+  }
+
+  signMeUp() async {
+    final valid =
+        await databaseMethods.usernameEmpty(userNameTextEditingController.text);
+    if (!valid) {
+      // valid == false
+      print("Username already exists");
+      usernameNotEmpty = true;
+    } else if (formKey.currentState.validate()) {
+      // save the username or something
       Map<String, String> userInfoMap = {
         "name": userNameTextEditingController.text,
         "email": emailTextEditingController.text
       };
 
-      HelperFunctions.saveUserEmailSharedPreference(emailTextEditingController.text);
-      HelperFunctions.saveUserNameSharedPreference(userNameTextEditingController.text);
+      HelperFunctions.saveUserEmailSharedPreference(
+          emailTextEditingController.text);
+      HelperFunctions.saveUserNameSharedPreference(
+          userNameTextEditingController.text);
 
       setState(() {
         isLoading = true;
@@ -46,7 +61,6 @@ class _SignUpState extends State<SignUp> {
           .signUpwithEmailAndPassword(emailTextEditingController.text,
               passwordTextEditingController.text)
           .then((val) {
-        
         databaseMethods.uploadUserInfo(userInfoMap);
 
         HelperFunctions.saveUserLoggedInSharedPreference(true);
@@ -79,9 +93,13 @@ class _SignUpState extends State<SignUp> {
                         child: Column(children: [
                           TextFormField(
                             validator: (val) {
-                              return val.isEmpty || val.length < 2
-                                  ? "Please Provide valid Username"
-                                  : null;
+                              if (val.isEmpty || val.length < 2) {
+                                return "Please Provide valid Username";
+                              } else if (usernameValidation(val)) {
+                                return "Username already exists. Try another.";
+                              } else {
+                                return null;
+                              }
                             },
                             controller: userNameTextEditingController,
                             style: simpleTextStyle(),

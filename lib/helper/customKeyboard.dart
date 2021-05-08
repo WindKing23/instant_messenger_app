@@ -25,6 +25,7 @@ class CustomKeyboard extends StatelessWidget {
           buildRowTwo(),
           buildRowThree(),
           buildRowFour(),
+          buildRowFive(),
         ],
       ),
     );
@@ -34,10 +35,6 @@ class CustomKeyboard extends StatelessWidget {
     return Expanded(
       child: Row(
         children: [
-          TextKey(
-            text: 'अ',
-            onTextInput: _textInputHandler,
-          ),
           TextKey(
             text: 'ा',
             onTextInput: _textInputHandler,
@@ -78,12 +75,68 @@ class CustomKeyboard extends StatelessWidget {
             text: 'ौ',
             onTextInput: _textInputHandler,
           ),
+          BackspaceKey(
+            onBackspace: _backspaceHandler,
+          ),
         ],
       ),
     );
   }
 
   Expanded buildRowTwo() {
+    return Expanded(
+      child: Row(
+        children: [
+          TextKey(
+            text: 'अ',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'आ',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'इ',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'ई',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'उ',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'ऊ',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'ऋ',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'ए',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'ऐ',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'ओ',
+            onTextInput: _textInputHandler,
+          ),
+          TextKey(
+            text: 'औ',
+            onTextInput: _textInputHandler,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Expanded buildRowThree() {
     return Expanded(
       child: Row(
         children: [
@@ -136,7 +189,7 @@ class CustomKeyboard extends StatelessWidget {
     );
   }
 
-  Expanded buildRowThree() {
+  Expanded buildRowFour() {
     return Expanded(
       child: Row(
         children: [
@@ -189,7 +242,7 @@ class CustomKeyboard extends StatelessWidget {
     );
   }
 
-  Expanded buildRowFour() {
+  Expanded buildRowFive() {
     return Expanded(
       child: Row(
         children: [
@@ -237,9 +290,6 @@ class CustomKeyboard extends StatelessWidget {
           TextKey(
             text: 'व',
             onTextInput: _textInputHandler,
-          ),
-          BackspaceKey(
-            onBackspace: _backspaceHandler,
           ),
         ],
       ),
@@ -298,7 +348,7 @@ class BackspaceKey extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(1.0),
         child: Material(
-          color: Colors.blue.shade300,
+          color: Colors.red,
           child: InkWell(
             onTap: () {
               onBackspace?.call();

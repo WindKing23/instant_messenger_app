@@ -1,6 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseMethods {
+  Future<bool> usernameEmpty(username) async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .where("name", isEqualTo: username)
+        .get()
+        .catchError((e) {
+      print(e.toString());
+    });
+    return snapshot.docs.isEmpty;
+  }
+
   Future<void> addUserInfo(userData) async {
     FirebaseFirestore.instance
         .collection("users")
@@ -60,16 +71,16 @@ class DatabaseMethods {
   }
 
   getConversationMessage(String chatRoomId) async {
-    return  FirebaseFirestore.instance // await
+    return FirebaseFirestore.instance // await
         .collection("chatRoom")
         .doc(chatRoomId)
         .collection("chats")
-        .orderBy("time",descending: false)
+        .orderBy("time", descending: false)
         .snapshots();
   }
 
   getChatRooms(String userName) async {
-    return  FirebaseFirestore.instance // await
+    return FirebaseFirestore.instance // await
         .collection("chatRoom")
         .where('users', arrayContains: userName)
         .snapshots();

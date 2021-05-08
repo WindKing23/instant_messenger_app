@@ -129,6 +129,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBarMain(context),
       body: Column(
         children: [
@@ -141,7 +142,8 @@ class _ConversationScreenState extends State<ConversationScreen> {
                 Container(
                   alignment: Alignment.bottomCenter,
                   width: MediaQuery.of(context).size.width,
-                  child: Container( // message container
+                  child: Container(
+                    // message container
                     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                     color: Colors.white60,
                     child: Row(
@@ -203,13 +205,18 @@ class _ConversationScreenState extends State<ConversationScreen> {
             ),
           ),
           Container(
-            child: CustomKeyboard(
-            onTextInput: (myText) {
-              _insertText(myText);
-            },
-            onBackspace: () {
-              _backspace();
-            },
+            alignment: Alignment.bottomCenter,
+            child: Stack(
+              children: [
+              CustomKeyboard(
+                onTextInput: (myText) {
+                  _insertText(myText);
+                },
+                onBackspace: () {
+                  _backspace();
+                },
+              ),
+            ],
           ),
           )
         ],
