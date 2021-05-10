@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
       return MaterialApp(
         title: 'Instant Chat',
         debugShowCheckedModeBanner: false,
-        routes: {
+        routes: { 
           '/aboutus': (context) => AboutPage(),
           '/settings': (context) => Settings(),
         },

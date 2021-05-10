@@ -30,18 +30,16 @@ class _SignUpState extends State<SignUp> {
 
   bool usernameNotEmpty = false;
 
-  usernameValidation(username) async {
-    await databaseMethods.usernameEmpty(username);
-  }
-
   signMeUp() async {
     final valid =
         await databaseMethods.usernameEmpty(userNameTextEditingController.text);
+
     if (!valid) {
       // valid == false
       print("Username already exists");
       usernameNotEmpty = true;
     } else if (formKey.currentState.validate()) {
+      usernameNotEmpty = false;
       // save the username or something
       Map<String, String> userInfoMap = {
         "name": userNameTextEditingController.text,
@@ -93,13 +91,12 @@ class _SignUpState extends State<SignUp> {
                         child: Column(children: [
                           TextFormField(
                             validator: (val) {
-                              if (val.isEmpty || val.length < 2) {
+                              if (val.isEmpty || val.length < 2)
                                 return "Please Provide valid Username";
-                              } else if (usernameValidation(val)) {
+                              else if (usernameNotEmpty == true)
                                 return "Username already exists. Try another.";
-                              } else {
+                              else
                                 return null;
-                              }
                             },
                             controller: userNameTextEditingController,
                             style: simpleTextStyle(),
