@@ -18,6 +18,9 @@ Instant Messenger Application is a type of online chat that offers real time tex
 
 Install my-project after the downloading apk from - https://drive.google.com/file/d/18rpGm5nDaXHNvROKOISAmQAnH4JMPBu0/view?usp=sharing
 
+## Screenshots
+![about us](https://user-images.githubusercontent.com/56354232/125043788-eecdc880-e0b8-11eb-9bf3-19e115dbbbae.png)
+
 ## Documentation
 
 [Flutter Docs](https://flutter.dev/)
