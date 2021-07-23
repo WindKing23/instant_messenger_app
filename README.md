@@ -18,6 +18,9 @@ Instant Messenger Application is a type of online chat that offers real time tex
 
 Install my-project after the downloading apk from - https://drive.google.com/file/d/18rpGm5nDaXHNvROKOISAmQAnH4JMPBu0/view?usp=sharing
 
+## Video Tutorial
+https://user-images.githubusercontent.com/56354232/126832133-cd710525-0599-4231-a574-cf6857707671.mp4
+
 ## Screenshots
 - Sign in
 - ![sign in](https://user-images.githubusercontent.com/56354232/125045087-3c970080-e0ba-11eb-8316-292170bb4103.jpg)
